@@ -1,0 +1,22 @@
+services:
+  kirocc:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: kirocc:latest
+    container_name: kirocc
+    restart: unless-stopped
+    # Run as the host user so the mounted kiro-cli DB stays read-writable.
+    user: "${UID:-1000}:${GID:-1000}"
+    ports:
+      - "3456:3456"
+    environment:
+      KIROCC_DB_PATH: /data/data.sqlite3
+      # Set an API key to require auth (recommended when the port is exposed).
+      # KIROCC_API_KEY: ${KIROCC_API_KEY:-}
+    command: ["-host", "0.0.0.0"]
+    volumes:
+      # Mount the kiro-cli auth database (read-write: kirocc refreshes tokens).
+      # Defaults to the macOS path. On Linux, put this in .env:
+      #   KIROCC_DATA_DIR=${HOME}/.local/share/kiro-cli
+      - "${KIROCC_DATA_DIR:-${HOME}/Library/Application Support/kiro-cli}:/data"

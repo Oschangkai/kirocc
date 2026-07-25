@@ -46,6 +46,14 @@ brew install d-kuro/tap/kirocc
 go install github.com/d-kuro/kirocc/cmd/kirocc@latest
 ```
 
+### Docker
+
+```bash
+docker compose up -d --build
+```
+
+See [docs/DOCKER.md](docs/DOCKER.md) for host DB path mounting, passing flags, and exposing the port safely.
+
 ## Usage
 
 ### Start the server

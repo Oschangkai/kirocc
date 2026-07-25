@@ -1,0 +1,17 @@
+dist/
+.git/
+.github/
+.claude/
+docs/
+_tmp/
+_docs/
+*.log
+debug.log
+.env
+*.test
+coverage.*
+*.out
+Dockerfile
+docker-compose.yml
+.dockerignore
+README.md
