@@ -20,6 +20,7 @@ Then point Claude Code at it:
 ```bash
 export ANTHROPIC_BASE_URL=http://127.0.0.1:3456
 export ANTHROPIC_AUTH_TOKEN=dummy
+export CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY=1
 claude
 ```
 
@@ -31,8 +32,10 @@ Compose reads `.env` from the same directory as `docker-compose.yml`. This is wh
 # .env
 
 # Host directory holding kiro-cli's data.sqlite3.
-# macOS default is baked into docker-compose.yml; Linux users must set this.
-KIROCC_DATA_DIR=/home/you/.local/share/kiro-cli
+
+KIROCC_DATA_DIR=${HOME}/.local/share/kiro-cli # Linux
+KIROCC_DATA_DIR=${HOME}/Library/Application Support/kiro-cli # macOS
+KIROCC_DATA_DIR=/mnt/c/Users/you/AppData/Local/Kiro-Cli # WSL2
 
 # Your host user, so the mounted DB stays writable.
 UID=1000
