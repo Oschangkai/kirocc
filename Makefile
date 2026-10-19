@@ -35,3 +35,11 @@ fix:
 
 clean:
 	rm -f $(BIN)
+
+.PHONY: upgrade force_push
+
+upgrade:
+	git fetch origin && git rebase origin/main
+
+force_push:
+	git push --force-with-lease origin feat/container
